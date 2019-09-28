@@ -7,7 +7,6 @@ const CUBIC_WEIGHT_CONVERSION_FACTOR = 250;
 
 class App extends React.Component {
   state = {
-    loading: false,
     allProducts: [],
   };
 
@@ -44,7 +43,7 @@ class App extends React.Component {
     }));
   };
 
-  totalProductsWeight = (acc, cur) => {
+  calculateTotalProductsWeight = (acc, cur) => {
     return acc + cur.cubicWeight;
   };
 
@@ -60,7 +59,7 @@ class App extends React.Component {
       : [];
 
     const averageAirConditionerWeight = allProducts.length
-      ? airConditionersWithWeights.reduce(this.totalProductsWeight, 0) / airConditionersWithWeights.length
+      ? airConditionersWithWeights.reduce(this.calculateTotalProductsWeight, 0) / airConditionersWithWeights.length
       : 0;
 
     return(
@@ -74,7 +73,7 @@ class App extends React.Component {
             )}
           </ul>
           <div>
-            Average AirConditioner Weight: {averageAirConditionerWeight.toFixed(2)}
+            Average AirConditioner Weight: {averageAirConditionerWeight.toFixed(2)}kg
           </div>
         </div>
       </div>
